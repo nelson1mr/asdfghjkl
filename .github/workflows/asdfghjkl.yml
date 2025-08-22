@@ -39,4 +39,4 @@ jobs:
           CAT_B_NAME: ${{ secrets.CAT_B_NAME }}
           CAT_G_NAME: ${{ secrets.CAT_G_NAME }}
           CAT_D_NAME: ${{ secrets.CAT_D_NAME }}
-        run: python processor.py
+        run: python asdfghjkl.py

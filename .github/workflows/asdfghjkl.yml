@@ -1,0 +1,42 @@
+name: asdfghjkl action
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run-engine:
+    name: Execute Data Ingestion
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Processing Script
+        env:
+          V1: ${{ secrets.V1 }}
+          V2: ${{ secrets.V2 }}
+          V3: ${{ secrets.V3 }}
+          V4: ${{ secrets.V4 }}
+          V5: ${{ secrets.V5 }}
+          V6: ${{ secrets.V6 }}
+          API_KEY_ID: ${{ secrets.API_KEY_ID }}
+          API_KEY_RESULT: ${{ secrets.API_KEY_RESULT }}
+          API_KEY_MSG: ${{ secrets.API_KEY_MSG }}
+          API_VAL_OK: ${{ secrets.API_VAL_OK }}
+          C1: ${{ secrets.C1 }}
+          C2: ${{ secrets.C2 }}
+          C6: ${{ secrets.C6 }}
+          INTERNAL_CAT_COL: ${{ secrets.INTERNAL_CAT_COL }}
+          INTERNAL_VAL_COL: ${{ secrets.INTERNAL_VAL_COL }}
+          RPC_PARAM_KEY: ${{ secrets.RPC_PARAM_KEY }}
+          CAT_A_NAME: ${{ secrets.CAT_A_NAME }}
+          CAT_B_NAME: ${{ secrets.CAT_B_NAME }}
+          CAT_G_NAME: ${{ secrets.CAT_G_NAME }}
+          CAT_D_NAME: ${{ secrets.CAT_D_NAME }}
+        run: python processor.py

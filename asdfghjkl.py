@@ -86,6 +86,7 @@ if __name__ == '__main__':
                     l_s = _f5(db, a_i)
                     r_u = _f6(a_s, l_s)
                     if not r_u.empty:
+                        r_u['last_updated'] = pd.to_datetime('now', utc=True).isoformat()
                         db.table(_O.v5).upsert(
                             r_u.rename(columns={'id_eess': _O.c1, _O.ic: 'category_name', _O.iv: 'saldo'}).to_dict(orient='records'),
                             on_conflict=f"{_O.c1}, category_name"
